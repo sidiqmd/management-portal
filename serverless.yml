@@ -1,0 +1,32 @@
+service: management-portal
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  memorySize: 256
+  stage: dev
+  region: ap-southeast-1
+  profile: arrivo
+  environment:
+    BASE_URL: "https://ciqddmcspj.execute-api.ap-southeast-1.amazonaws.com"
+    MYSQL_HOST: "database-2.cngyfrkpvccl.ap-southeast-1.rds.amazonaws.com"
+    MYSQL_PORT: "3306"
+    MYSQL_USER: "admin"
+    MYSQL_PASS: "Pgt4GNsP4Ybw"
+    MYSQL_DATABASE: "managementdb"
+    ACCESS_TOKEN_KEY: "tHnREhf1ic4T2xpGzXiWFSitgzhu7ydFf3gaBgXlrB9OdZkO7Hi82OD7HQ77"
+    REFRESH_TOKEN_KEY: "w4dmSZKqlXrq3LuzozrEf5MCauInh3lUPAVErS963e5kN7fYv3VXIdDxc6bz"
+    BILLPLZ_URL: "https://www.billplz-sandbox.com/api/v3"
+    BILLPLZ_COLLECTION_CODE: "5nqfq9k2"
+    BILLPLZ_SECRET_KEY: "c801dc73-e510-4200-9fe8-131fcfb79b0f"
+    BILLPLZ_X_SIGNATURE_KEY: "S-ZQgUAF4jmf2OlygkDVC-fQ"
+
+functions:
+  api:
+    handler: src/handlers/index.handler
+    events:
+      - httpApi: "*"
+
+plugins:
+  - serverless-offline
